@@ -21,7 +21,6 @@ void main()
   printf("\n");
  }
  b[0][0]=m;
- //printf("%d",b[0][0]);
  b[0][1]=n;
  p=1;
  for(i=0;i<m;i++)
