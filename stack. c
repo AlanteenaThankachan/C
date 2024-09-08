@@ -5,7 +5,6 @@ int top=-1,stack[MAX];
 void push();
 void pop();
 void display();
-
 void main()
 {
 	int ch;
