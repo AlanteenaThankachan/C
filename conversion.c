@@ -2,12 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
 const int MAX=100;
-
 char stack [100];
 int top=-1;
-
 void push(char c) 
 {
     if (top==MAX-1) 
@@ -17,7 +14,6 @@ void push(char c)
     }
     stack[++top]=c;
 }
-
 char pop()
  {
     if (top==-1) 
@@ -43,7 +39,6 @@ int precedence(char c)
         return 0;
     }
 }
-
 void infixToPostfix(char *infix, char *postfix)
  {
     int i,j=0;
@@ -80,8 +75,7 @@ void infixToPostfix(char *infix, char *postfix)
             push(infix[i]);
         }
     }
-
-    while (top!=-1)
+  while (top!=-1)
      {
         postfix[j++]=pop();
     }
