@@ -1,82 +1,56 @@
-#include<stdio.h>
-#include<ctype.h>
-void push(char);
-int priority(char);
-char pop();
-int top = -1;
-char stack[50];
-
-void main() {
-    char infix[50];
-    char ch;
-    int i = 0, item;
-    
-    printf("Enter the expression: ");
-    scanf("%s", infix);
-    
-    while (infix[i] != '\0') 
-    {
-        ch = infix[i];
-        
-        if (ch == '(') {
-            push(ch);
-        } 
-        else if (isalnum(ch)) 
-        {  
-            
-            printf("%c", ch);
-        } 
-        else if (ch == ')') 
-        {
-            while ((item = pop()) != '(') 
-            {  
-                printf("%c", item);
-            }
-        } 
-        else {
-            while (top != -1 && priority(stack[top]) >= priority(ch)) 
-            {
-                item = pop();
-                printf("%c", item);
-            }
-            push(ch);
-        }
-        i++;
-    }
-    while (top != -1) {
-        printf("%c", pop());
-    }
-}
-
-void push(char ch) {
-    if (top >= 49) {
-        printf("Stack Overflow\n");
-    } else {
-        top++;
-        stack[top] = ch;
-    }
-}
-
-char pop() 
+#include <stdio.h>
+#include <stdlib.h>
+struct Node
 {
-    if (top == -1)
-    {
-        printf("Stack Underflow\n");
-        return -1;
-    } else {
-        char item = stack[top];
-        top--;
-        return item;
-    }
+int data;
+struct Node*link;
+};
+struct Node* head;
+void insertatbeg(int x)
+{
+struct Node* temp;
+temp = (struct Node*)malloc(sizeof(struct Node));
+temp->data = x;
+temp->link = head;
+head = temp;
 }
-
-int priority(char ch) {
-    if (ch == '(')
-        return 0;
-    else if (ch == '+' || ch == '-')
-        return 1;
-    else if (ch == '*' || ch == '/')
-        return 2;
-    else 
-        return 0;
+void printlist(struct Node* temp)
+{
+if(temp==NULL)
+return;
+printf("%d->",temp->data);
+printlist(temp->link);
 }
+int main()
+{
+int i,n,x,c;
+head=NULL;
+printf("Enter no of nodes:");
+scanf("%d",&n);
+for (int i=0;i<n;i++)
+{
+ printf("Enter node %d.",i+1);
+ scanf("%d",&x);
+ insertatbeg(x);
+}
+printf("LINKED LIST : ");
+printlist(head);
+printf("NULL");
+do {
+ printf("\n1.Add new element\n0.Exit\n");
+ scanf("%d",&c);
+ if (c==1)
+ {
+   printf("Enter new element:");
+   scanf("%d",&x);
+   insertatbeg(x);
+   printf("UPDATED LIST:");
+   printlist(head);
+   printf("NULL");
+  }} while (c!=0);
+  {
+  printf("Code Successfully Executed");
+  }
+return 0;
+}
+	
