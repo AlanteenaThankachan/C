@@ -17,12 +17,12 @@ scanf("%d",&(t->size));
 t->prev=NULL;
  return t; } 
 node* insert(node* t,node* H){ 
-// inserting at front if(H==NULL){ H=t; } 
+ if(H==NULL){ H=t; } 
 else{ node* p = H; while(p->next)
 { p=p->next; } 
 p->next=t; t->prev=p; } return H; }
  node* insertGarbage(int p,node* H)
-{ // inserting garbage node* t= malloc(sizeof(node));
+{  node* t= malloc(sizeof(node));
  t->next=NULL; 
 t->prev=NULL;
  t->size=p;
